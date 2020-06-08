@@ -35,5 +35,10 @@ func main(){
 		u.POST("/delete/:id", inDB.DeleteUser)
 	}
 
+	a:= r.Group("auth")
+	{
+		a.POST("/login", inDB.GetToken)
+	}
+
 	r.Run()
 }

@@ -12,14 +12,16 @@ func DBInit() *gorm.DB{
 		panic("failed to connect database")
 	}
 
+	db.DropTable(structs.Person{}, structs.User{})
 	db.AutoMigrate(structs.Person{}, structs.User{})
 
 	//create dummy data
 	people := structs.Person{First_Name: "Sendi", Last_Name: "Dian"}
 	user := structs.User{Username: "Sendi", Password: "888888", Jenkel: "L", Numphone: "081220201131"}
 
-	db.NewRecord(people) // => returns `true` as primary key is blank
-	db.NewRecord(user)
+
+	// db.NewRecord(people) // => returns `true` as primary key is blank
+	// db.NewRecord(user)
 
 	db.Create(&people)
 	db.Create(&user)
