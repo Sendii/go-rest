@@ -15,10 +15,13 @@ func DBInit() *gorm.DB{
 	db.AutoMigrate(structs.Person{}, structs.User{})
 
 	//create dummy data
-	user := structs.Person{First_Name: "Sendi", Last_Name: "Dian"}
+	people := structs.Person{First_Name: "Sendi", Last_Name: "Dian"}
+	user := structs.User{Username: "Sendi", Password: "888888", Jenkel: "L", Numphone: "081220201131"}
 
-	db.NewRecord(user) // => returns `true` as primary key is blank
+	db.NewRecord(people) // => returns `true` as primary key is blank
+	db.NewRecord(user)
 
+	db.Create(&people)
 	db.Create(&user)
 	return db
 }

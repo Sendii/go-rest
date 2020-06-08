@@ -18,10 +18,21 @@ func main(){
 		p.GET("/", inDB.GetPersons)	
 		p.POST("/create", inDB.CreatePerson) //use validation firstname and lastname cannot null
 		p.GET("/:id", inDB.GetPerson)
-		p.PUT("/update", inDB.UpdatePerson)
+		p.POST("/update", inDB.UpdatePerson)
 
 		//delete bisa dengan .DELETE ataupun .POST
 		p.POST("/delete/:id", inDB.DeletePerson)
+	}
+
+	u := r.Group("user")
+	{
+		u.GET("/", inDB.GetUsers)	
+		u.POST("/create", inDB.CreateUser) 
+		u.GET("/:id", inDB.GetUser)
+		u.POST("/update", inDB.UpdateUser)
+
+		//delete bisa dengan .DELETE ataupun .POST
+		u.POST("/delete/:id", inDB.DeleteUser)
 	}
 
 	r.Run()

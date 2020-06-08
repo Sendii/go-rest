@@ -13,5 +13,5 @@ type User struct {
 	Username string
 	Password string
 	Jenkel string
-	Numphone int
+	Numphone string
 }
