@@ -12,6 +12,9 @@ func main(){
 	inDB := &controllers.InDB{DB: db}
 
 	r := gin.Default()
+	r.MaxMultipartMemory = 8 << 20
+	// Static
+	r.Static("/a", "./static")
 
 	p := r.Group("person")
 	{
@@ -39,6 +42,8 @@ func main(){
 	{
 		a.POST("/login", inDB.GetToken)
 	}
+
+	r.POST("/upload", controllers.UploadFile)
 
 	r.Run()
 }
