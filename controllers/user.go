@@ -46,6 +46,7 @@ func (idb *InDB) GetUsers(c *gin.Context) {
 			"result": users,
 			"count": len(users),
 		}
+		CreateLog()
 	}
 	c.JSON(http.StatusOK, result)
 }
